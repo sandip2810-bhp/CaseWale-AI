@@ -1,0 +1,117 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id               String     @id @default(cuid())
+  email            String     @unique
+  password         String
+  name             String?
+  resetTokenHash   String?    @unique
+  resetTokenExpiry DateTime?
+  createdAt        DateTime   @default(now())
+  questions        Question[]
+  drafts           Draft[]
+  cases            Case[]
+}
+
+model Question {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+  question     String
+  answer       String
+  citations    Json?
+  jurisdiction String?
+  createdAt    DateTime @default(now())
+}
+
+enum DraftStatus {
+  PENDING
+  SENT
+}
+
+model Draft {
+  id             String      @id @default(cuid())
+  userId         String
+  user           User        @relation(fields: [userId], references: [id])
+  title          String?
+  content        String
+  status         DraftStatus @default(PENDING)
+  remindAt       DateTime?
+  lastReminderAt DateTime?
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+}
+
+// ============================================================
+// CASE ANALYSIS DASHBOARD
+// ============================================================
+
+enum CaseStatus {
+  OPEN
+  PENDING
+  CLOSED
+}
+
+model Case {
+  id            String        @id @default(cuid())
+  userId        String
+  user          User          @relation(fields: [userId], references: [id])
+  title         String
+  caseNumber    String?
+  court         String?
+  clientName    String?
+  opposingParty String?
+  jurisdiction  String?
+  status        CaseStatus    @default(OPEN)
+  description   String?
+  filedDate     DateTime?
+  nextHearing   DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  documents     CaseDocument[]
+  events        CaseEvent[]
+
+  @@index([userId])
+}
+
+model CaseDocument {
+  id         String   @id @default(cuid())
+  caseId     String
+  case       Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  userId     String
+  fileName   String
+  fileUrl    String
+  fileType   String?
+  fileSize   Int?
+  uploadedAt DateTime @default(now())
+
+  @@index([caseId])
+}
+
+enum CaseEventType {
+  HEARING
+  DEADLINE
+  MEETING
+  OTHER
+}
+
+model CaseEvent {
+  id        String        @id @default(cuid())
+  caseId    String
+  case      Case          @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  userId    String
+  title     String
+  eventDate DateTime
+  eventType CaseEventType @default(OTHER)
+  notes     String?
+  createdAt DateTime      @default(now())
+
+  @@index([caseId])
+  @@index([userId, eventDate])
+}

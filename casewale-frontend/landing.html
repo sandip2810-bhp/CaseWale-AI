@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="UTF-8" />
+<script src="js/theme.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CaseWale — AI Legal Information Assistant for India</title>
+<meta name="description" content="Ask a legal question, get a plain-English answer grounded in current Indian law with citations, and keep your notices and follow-ups on track." />
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "surface-container-high": "rgb(var(--color-surface-container-high) / <alpha-value>)",
+          "surface-container-low": "rgb(var(--color-surface-container-low) / <alpha-value>)",
+          "outline-variant": "rgb(var(--color-outline-variant) / <alpha-value>)",
+          "primary": "rgb(var(--color-primary) / <alpha-value>)",
+          "on-background": "rgb(var(--color-on-background) / <alpha-value>)",
+          "surface-bright": "rgb(var(--color-surface-bright) / <alpha-value>)",
+          "on-tertiary": "rgb(var(--color-on-tertiary) / <alpha-value>)",
+          "inverse-surface": "rgb(var(--color-inverse-surface) / <alpha-value>)",
+          "primary-container": "rgb(var(--color-primary-container) / <alpha-value>)",
+          "on-secondary": "rgb(var(--color-on-secondary) / <alpha-value>)",
+          "surface-dim": "rgb(var(--color-surface-dim) / <alpha-value>)",
+          "surface-tint": "rgb(var(--color-surface-tint) / <alpha-value>)",
+          "background": "rgb(var(--color-background) / <alpha-value>)",
+          "error": "rgb(var(--color-error) / <alpha-value>)",
+          "on-surface": "rgb(var(--color-on-surface) / <alpha-value>)",
+          "surface": "rgb(var(--color-surface) / <alpha-value>)",
+          "surface-container-highest": "rgb(var(--color-surface-container-highest) / <alpha-value>)",
+          "surface-container-lowest": "rgb(var(--color-surface-container-lowest) / <alpha-value>)",
+          "on-surface-variant": "rgb(var(--color-on-surface-variant) / <alpha-value>)",
+          "outline": "rgb(var(--color-outline) / <alpha-value>)",
+          "surface-variant": "rgb(var(--color-surface-container-highest) / <alpha-value>)",
+          "on-primary": "rgb(var(--color-on-primary) / <alpha-value>)",
+          "surface-container": "rgb(var(--color-surface-container) / <alpha-value>)",
+          "secondary": "rgb(var(--color-secondary) / <alpha-value>)",
+        },
+        borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+        spacing: { unit: "8px", "margin-mobile": "20px", "margin-desktop": "64px", "container-max": "1440px", gutter: "24px" },
+        fontFamily: { "display-lg": ["Inter"], "body-md": ["Inter"], "body-lg": ["Inter"], "headline-md": ["Inter"], "headline-lg": ["Inter"], "label-md": ["Inter"] },
+        fontSize: {
+          "display-lg": ["64px", { lineHeight: "72px", letterSpacing: "-0.02em", fontWeight: "800" }],
+          "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+          "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+          "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+          "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700" }],
+          "label-md": ["14px", { lineHeight: "20px", letterSpacing: "0.05em", fontWeight: "600" }],
+        },
+      },
+    },
+  };
+</script>
+</head>
+<body class="canvas-bg min-h-screen text-on-surface selection:bg-primary selection:text-on-primary">
+
+  <!-- ===================================================== -->
+  <!-- NAV -->
+  <!-- ===================================================== -->
+  <header class="sticky top-0 z-40 bg-surface-dim/70 backdrop-blur-md border-b border-outline-variant">
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">gavel</span>
+        <span class="font-headline-md text-headline-md text-primary tracking-tight">CaseWale</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <button type="button" id="theme-toggle" class="flex items-center justify-center w-9 h-9 rounded-full bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors" title="Toggle light / dark theme">
+          <span class="material-symbols-outlined text-[18px]" id="theme-toggle-icon">dark_mode</span>
+        </button>
+        <a href="index.html" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-3 py-2">Sign in</a>
+        <a href="index.html" class="font-label-md text-label-md bg-primary text-on-primary px-4 py-2.5 rounded-lg font-bold hover:opacity-90 transition-opacity">Create account</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================== -->
+  <!-- HERO -->
+  <!-- ===================================================== -->
+  <section class="relative overflow-hidden">
+    <div class="absolute top-[-15%] left-[-10%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[140px] ai-pulse"></div>
+    <div class="absolute bottom-[-15%] right-[-10%] w-[500px] h-[500px] bg-primary-container/10 rounded-full blur-[140px] ai-pulse"></div>
+
+    <div class="relative z-10 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-16 pb-20 md:pt-24 md:pb-28">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 bg-surface-container-highest/60 border border-outline-variant rounded-full px-4 py-1.5 mb-8">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+          <span class="font-label-md text-[11px] text-on-surface-variant">Built for Indian law — BNS, BNSS &amp; BSA aware</span>
+        </div>
+
+        <h1 class="font-display-lg text-[40px] leading-[46px] md:text-display-lg md:leading-[72px] text-on-surface tracking-tight mb-6">
+          Ask your legal question.<br class="hidden md:block" /> Get an answer you can check.
+        </h1>
+
+        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-10">
+          CaseWale answers everyday legal questions under Indian law in plain English — with the statute, section or case it's relying on next to every claim, not after it.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="text-center bg-primary text-on-primary px-8 py-4 rounded-lg font-headline-md text-headline-md font-bold shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity">
+            Ask your first question
+          </a>
+          <a href="#how-it-works" class="text-center border border-outline-variant text-on-surface px-8 py-4 rounded-lg font-headline-md text-headline-md font-bold hover:border-primary/50 transition-colors">
+            See how it works
+          </a>
+        </div>
+
+        <p class="text-xs text-on-surface-variant/60 mt-6 max-w-lg">
+          CaseWale gives general legal information, not legal advice or representation. For anything high-stakes, it will tell you to consult a lawyer.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================== -->
+  <!-- WHAT IT DOES -->
+  <!-- ===================================================== -->
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-20">
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <div class="glass-card p-8 rounded-xl border-l-4 border-l-primary">
+        <span class="material-symbols-outlined text-primary text-3xl mb-4 block">balance</span>
+        <h3 class="font-headline-md text-headline-md text-on-surface mb-2">Grounded in current law</h3>
+        <p class="font-body-md text-body-md text-on-surface-variant">
+          Every answer is checked against currently applicable Indian statutes and case law — including the 2023 criminal codes — and won't invent a section to sound authoritative.
+        </p>
+      </div>
+
+      <div class="glass-card p-8 rounded-xl">
+        <span class="material-symbols-outlined text-primary text-3xl mb-4 block">history</span>
+        <h3 class="font-headline-md text-headline-md text-on-surface mb-2">A running case history</h3>
+        <p class="font-body-md text-body-md text-on-surface-variant">
+          Every question you ask is saved, searchable, and filterable by date or jurisdiction — so you can pick up a thread weeks later without re-explaining it.
+        </p>
+      </div>
+
+      <div class="glass-card p-8 rounded-xl">
+        <span class="material-symbols-outlined text-primary text-3xl mb-4 block">draft</span>
+        <h3 class="font-headline-md text-headline-md text-on-surface mb-2">Drafts that don't get forgotten</h3>
+        <p class="font-body-md text-body-md text-on-surface-variant">
+          Write a legal notice, set a follow-up date, and CaseWale emails you when it's time to send it — instead of it sitting in a tab you'll forget to check.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================== -->
+  <!-- HOW IT WORKS -->
+  <!-- ===================================================== -->
+  <section id="how-it-works" class="bg-surface-container-low border-y border-outline-variant">
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-20">
+      <h2 class="font-headline-lg text-headline-lg text-on-surface mb-12 max-w-xl">How a question gets answered</h2>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="flex gap-4">
+          <span class="font-headline-lg text-headline-lg text-primary/40 shrink-0">1</span>
+          <div>
+            <h4 class="font-bold text-on-surface mb-1">Ask, in your own words</h4>
+            <p class="text-sm text-on-surface-variant">Describe the situation — the state it happened in, what's already happened, what you're unsure about.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <span class="font-headline-lg text-headline-lg text-primary/40 shrink-0">2</span>
+          <div>
+            <h4 class="font-bold text-on-surface mb-1">Get a cited answer</h4>
+            <p class="text-sm text-on-surface-variant">CaseWale explains what the law says, what may be available to you, and what it can't guarantee — with sources attached.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <span class="font-headline-lg text-headline-lg text-primary/40 shrink-0">3</span>
+          <div>
+            <h4 class="font-bold text-on-surface mb-1">Act on it</h4>
+            <p class="text-sm text-on-surface-variant">Turn it into a notice draft, set a reminder to follow up, or come back to it later from your history.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================== -->
+  <!-- SAMPLE QUESTIONS -->
+  <!-- ===================================================== -->
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-20">
+    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">The kind of thing people ask</h2>
+    <p class="text-on-surface-variant mb-10 max-w-lg">Real situations, not textbook questions.</p>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="glass-panel p-5 rounded-xl">
+        <p class="text-on-surface text-sm">"An online seller won't refund a defective product — what can I actually do?"</p>
+      </div>
+      <div class="glass-panel p-5 rounded-xl">
+        <p class="text-on-surface text-sm">"I was scammed over UPI. Where do I report it and what happens next?"</p>
+      </div>
+      <div class="glass-panel p-5 rounded-xl">
+        <p class="text-on-surface text-sm">"How is property usually divided in a divorce in Maharashtra?"</p>
+      </div>
+      <div class="glass-panel p-5 rounded-xl">
+        <p class="text-on-surface text-sm">"Is a legal notice actually required before I can go to consumer court?"</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================== -->
+  <!-- CTA -->
+  <!-- ===================================================== -->
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-20 md:pb-28">
+    <div class="glass-card gold-glow rounded-2xl p-10 md:p-16 text-center">
+      <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Start with one question.</h2>
+      <p class="text-on-surface-variant max-w-md mx-auto mb-8">No cost to try it, no waiting for a callback. Create an account and ask what's actually on your mind.</p>
+      <a href="index.html" class="inline-block bg-primary text-on-primary px-8 py-4 rounded-lg font-headline-md text-headline-md font-bold shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity">
+        Create your free account
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================================================== -->
+  <!-- FOOTER -->
+  <!-- ===================================================== -->
+  <footer class="border-t border-outline-variant">
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-10 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">gavel</span>
+        <span class="font-bold text-on-surface">CaseWale</span>
+      </div>
+      <div class="flex flex-wrap justify-center gap-x-8 gap-y-2 opacity-60">
+        <a class="font-label-md text-label-md hover:text-primary transition-colors" href="#">Privacy Protocol</a>
+        <a class="font-label-md text-label-md hover:text-primary transition-colors" href="#">Terms of Service</a>
+        <a class="font-label-md text-label-md hover:text-primary transition-colors" href="#">Legal Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+/* CaseWale — shared visual system, ported from the Stitch DESIGN.md tokens */
+
+/* ---- Theme tokens (RGB triples, consumed by tailwind.config as
+   rgb(var(--color-x) / <alpha-value>)). Dark is the default "Digital
+   Sovereignty" theme; .light overrides give a legible daytime mode. ---- */
+:root,
+html.dark {
+  --color-background: 22 19 11;
+  --color-surface: 22 19 11;
+  --color-surface-dim: 22 19 11;
+  --color-surface-bright: 61 57 47;
+  --color-surface-container-lowest: 17 14 7;
+  --color-surface-container-low: 31 27 19;
+  --color-surface-container: 35 31 23;
+  --color-surface-container-high: 45 42 33;
+  --color-surface-container-highest: 56 52 43;
+  --color-on-background: 234 225 212;
+  --color-on-surface: 234 225 212;
+  --color-on-surface-variant: 208 197 175;
+  --color-outline: 153 144 124;
+  --color-outline-variant: 77 70 53;
+  --color-primary: 242 202 80;
+  --color-primary-container: 212 175 55;
+  --color-on-primary: 60 47 0;
+  --color-secondary: 255 226 171;
+  --color-on-secondary: 64 45 0;
+  --color-on-tertiary: 8 43 114;
+  --color-inverse-surface: 234 225 212;
+  --color-surface-tint: 233 195 73;
+  --color-error: 255 180 171;
+
+  --canvas-from: #0a0c10;
+  --canvas-to: #050505;
+  --glass-bg: rgba(10, 12, 16, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-input-bg: rgba(22, 19, 11, 0.6);
+}
+
+html.light {
+  --color-background: 247 243 234;
+  --color-surface: 247 243 234;
+  --color-surface-dim: 236 229 211;
+  --color-surface-bright: 255 255 255;
+  --color-surface-container-lowest: 255 255 255;
+  --color-surface-container-low: 247 243 234;
+  --color-surface-container: 240 233 216;
+  --color-surface-container-high: 230 220 196;
+  --color-surface-container-highest: 221 208 176;
+  --color-on-background: 31 27 19;
+  --color-on-surface: 31 27 19;
+  --color-on-surface-variant: 77 70 53;
+  --color-outline: 122 113 87;
+  --color-outline-variant: 201 191 160;
+  --color-primary: 168 113 10;
+  --color-primary-container: 212 175 55;
+  --color-on-primary: 255 255 255;
+  --color-secondary: 122 92 0;
+  --color-on-secondary: 255 255 255;
+  --color-on-tertiary: 8 43 114;
+  --color-inverse-surface: 31 27 19;
+  --color-surface-tint: 168 113 10;
+  --color-error: 179 38 30;
+
+  --canvas-from: #fbf8f0;
+  --canvas-to: #f0e9d8;
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(31, 27, 19, 0.08);
+  --glass-input-bg: rgba(255, 255, 255, 0.7);
+}
+
+body {
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-on-surface));
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+::selection { background: #f2ca50; color: #3c2f00; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgb(var(--color-outline-variant)); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: rgb(var(--color-outline)); }
+
+.canvas-bg {
+  background: radial-gradient(circle at center, var(--canvas-from) 0%, var(--canvas-to) 100%);
+}
+
+.glass-panel,
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+.glass-input {
+  background: var(--glass-input-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(242, 202, 80, 0.2);
+}
+
+.gold-glow {
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
+}
+
+.ai-pulse {
+  animation: ai-pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes ai-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.1; }
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+[hidden] { display: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

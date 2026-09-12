@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>CaseWale AI | Digital Sovereignty Dashboard</title>
+    <script src="js/theme.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+        rel="stylesheet"
+    />
+
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <!-- jsPDF (client-side PDF export for answers & drafts) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+
+            theme: {
+                extend: {
+
+                    colors: {
+                        "surface-container-high": "rgb(var(--color-surface-container-high) / <alpha-value>)",
+                        "surface-container-low": "rgb(var(--color-surface-container-low) / <alpha-value>)",
+                        "outline-variant": "rgb(var(--color-outline-variant) / <alpha-value>)",
+                        "primary": "rgb(var(--color-primary) / <alpha-value>)",
+                        "on-background": "rgb(var(--color-on-background) / <alpha-value>)",
+                        "surface-bright": "rgb(var(--color-surface-bright) / <alpha-value>)",
+                        "on-tertiary": "rgb(var(--color-on-tertiary) / <alpha-value>)",
+                        "inverse-surface": "rgb(var(--color-inverse-surface) / <alpha-value>)",
+                        "primary-container": "rgb(var(--color-primary-container) / <alpha-value>)",
+                        "on-secondary": "rgb(var(--color-on-secondary) / <alpha-value>)",
+                        "surface-dim": "rgb(var(--color-surface-dim) / <alpha-value>)",
+                        "surface-tint": "rgb(var(--color-surface-tint) / <alpha-value>)",
+                        "background": "rgb(var(--color-background) / <alpha-value>)",
+                        "error": "rgb(var(--color-error) / <alpha-value>)",
+                        "on-surface": "rgb(var(--color-on-surface) / <alpha-value>)",
+                        "surface": "rgb(var(--color-surface) / <alpha-value>)",
+                        "surface-container-highest": "rgb(var(--color-surface-container-highest) / <alpha-value>)",
+                        "surface-container-lowest": "rgb(var(--color-surface-container-lowest) / <alpha-value>)",
+                        "on-surface-variant": "rgb(var(--color-on-surface-variant) / <alpha-value>)",
+                        "outline": "rgb(var(--color-outline) / <alpha-value>)",
+                        "surface-variant": "rgb(var(--color-surface-container-highest) / <alpha-value>)",
+                        "on-primary": "rgb(var(--color-on-primary) / <alpha-value>)",
+                        "surface-container": "rgb(var(--color-surface-container) / <alpha-value>)",
+                        "secondary": "rgb(var(--color-secondary) / <alpha-value>)"
+                    },
+
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+
+                    spacing: {
+                        unit: "8px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "container-max": "1440px",
+                        gutter: "24px"
+                    },
+
+                    fontFamily: {
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+
+                    fontSize: {
+                        "display-lg": [
+                            "64px",
+                            {
+                                lineHeight: "72px",
+                                letterSpacing: "-0.02em",
+                                fontWeight: "800"
+                            }
+                        ],
+
+                        "body-md": [
+                            "16px",
+                            {
+                                lineHeight: "24px",
+                                fontWeight: "400"
+                            }
+                        ],
+
+                        "body-lg": [
+                            "18px",
+                            {
+                                lineHeight: "28px",
+                                fontWeight: "400"
+                            }
+                        ],
+
+                        "headline-md": [
+                            "24px",
+                            {
+                                lineHeight: "32px",
+                                fontWeight: "600"
+                            }
+                        ],
+
+                        "headline-lg": [
+                            "32px",
+                            {
+                                lineHeight: "40px",
+                                letterSpacing: "-0.01em",
+                                fontWeight: "700"
+                            }
+                        ],
+
+                        "label-md": [
+                            "14px",
+                            {
+                                lineHeight: "20px",
+                                letterSpacing: "0.05em",
+                                fontWeight: "600"
+                            }
+                        ]
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+
+
+<body class="canvas-bg font-body-md text-body-md h-screen flex overflow-hidden">
+
+    <!-- ===================================================== -->
+    <!-- SIDEBAR -->
+    <!-- ===================================================== -->
+
+    <aside
+        class="fixed left-0 top-0 h-full w-64 bg-surface-container-low/90 backdrop-blur-2xl border-r border-white/10 flex flex-col py-unit z-50"
+    >
+
+        <!-- Logo -->
+        <div class="px-6 py-8">
+
+            <h1 class="font-headline-md text-headline-md text-primary tracking-tighter">
+                CaseWale AI
+            </h1>
+
+            <p class="font-label-md text-label-md text-on-surface-variant opacity-60">
+                Legal Intelligence
+            </p>
+
+        </div>
+
+
+        <!-- Sidebar Tabs -->
+        <div class="px-4 mb-4 grid grid-cols-3 gap-2" id="sidebar-tabs">
+
+            <button
+                type="button"
+                id="tab-chat-btn"
+                class="py-2 rounded-lg text-[11px] font-bold uppercase tracking-widest transition-all bg-primary text-on-primary"
+            >
+                Ask AI
+            </button>
+
+            <button
+                type="button"
+                id="tab-drafts-btn"
+                class="relative py-2 rounded-lg text-[11px] font-bold uppercase tracking-widest transition-all bg-surface-container-highest text-on-surface-variant hover:text-primary"
+            >
+                Drafts
+                <span
+                    id="drafts-tab-badge"
+                    class="hidden absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-error text-[9px] text-white items-center justify-center"
+                ></span>
+            </button>
+
+            <button
+                type="button"
+                id="tab-cases-btn"
+                class="relative py-2 rounded-lg text-[11px] font-bold uppercase tracking-widest transition-all bg-surface-container-highest text-on-surface-variant hover:text-primary"
+            >
+                Cases
+            </button>
+
+        </div>
+
+        <div id="chat-sidebar-panel" class="flex flex-col flex-1 min-h-0">
+
+        <!-- New Question -->
+        <div class="px-4 mb-6">
+
+            <button
+                class="w-full bg-primary text-on-primary py-3 px-4 rounded-lg font-label-md flex items-center justify-center gap-2 hover:brightness-110 active:scale-95 transition-all"
+                id="new-chat-btn"
+                type="button"
+            >
+
+                <span class="material-symbols-outlined">
+                    add
+                </span>
+
+                New Question
+
+            </button>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- HISTORY -->
+        <!-- ================================================= -->
+
+        <nav class="flex-1 overflow-y-auto space-y-1 px-2">
+
+            <!-- History Title -->
+            <div class="px-2 py-2">
+
+                <span
+                    class="text-[10px] uppercase tracking-widest text-on-surface-variant opacity-50 font-bold"
+                >
+                    History
+                </span>
+
+            </div>
+
+
+            <!-- History Search -->
+
+            <div class="px-2 mb-3">
+
+                <div
+                    class="flex items-center gap-2 bg-surface-container-highest rounded-lg px-3 py-2 border border-white/5"
+                >
+
+                    <span
+                        class="material-symbols-outlined text-on-surface-variant text-[18px]"
+                    >
+                        search
+                    </span>
+
+
+                    <input
+                        class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-on-surface-variant/50 text-on-surface"
+                        id="history-search"
+                        placeholder="Search your questions…"
+                        type="text"
+                        autocomplete="off"
+                    />
+
+                </div>
+
+            </div>
+
+
+            <!-- History Filters -->
+
+            <div class="px-2 mb-2 grid grid-cols-2 gap-2">
+                <input
+                    class="bg-surface-container-highest border border-white/5 rounded-lg px-2 py-1.5 text-[11px] text-on-surface-variant focus:ring-1 focus:ring-primary outline-none"
+                    id="history-from"
+                    type="date"
+                    title="From date"
+                />
+                <input
+                    class="bg-surface-container-highest border border-white/5 rounded-lg px-2 py-1.5 text-[11px] text-on-surface-variant focus:ring-1 focus:ring-primary outline-none"
+                    id="history-to"
+                    type="date"
+                    title="To date"
+                />
+            </div>
+
+            <div class="px-2 mb-3">
+                <select
+                    class="w-full bg-surface-container-highest border border-white/5 rounded-lg px-2 py-1.5 text-[11px] text-on-surface-variant focus:ring-1 focus:ring-primary outline-none"
+                    id="history-sort"
+                >
+                    <option value="newest">Newest first</option>
+                    <option value="oldest">Oldest first</option>
+                </select>
+            </div>
+
+
+            <!-- History List -->
+
+            <ul
+                id="history-list"
+                class="space-y-1"
+            >
+
+                <li
+                    class="px-4 py-3 text-xs text-on-surface-variant opacity-60"
+                >
+                    Loading…
+                </li>
+
+            </ul>
+
+            <button
+                type="button"
+                id="history-load-more"
+                class="hidden w-full mt-2 px-4 py-2 text-[11px] font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors"
+            >
+                Load more
+            </button>
+
+        </nav>
+
+        </div>
+        <!-- /chat-sidebar-panel -->
+
+
+        <!-- ================================================= -->
+        <!-- DRAFTS SIDEBAR PANEL -->
+        <!-- ================================================= -->
+
+        <div id="drafts-sidebar-panel" class="flex-col flex-1 min-h-0" hidden>
+
+            <div class="px-4 mb-6">
+                <button
+                    class="w-full bg-primary text-on-primary py-3 px-4 rounded-lg font-label-md flex items-center justify-center gap-2 hover:brightness-110 active:scale-95 transition-all"
+                    id="new-draft-btn"
+                    type="button"
+                >
+                    <span class="material-symbols-outlined">add</span>
+                    New Draft
+                </button>
+            </div>
+
+            <nav class="flex-1 overflow-y-auto space-y-1 px-2">
+
+                <div class="px-2 py-2 flex items-center justify-between">
+                    <span class="text-[10px] uppercase tracking-widest text-on-surface-variant opacity-50 font-bold">
+                        Drafts
+                    </span>
+                    <span
+                        id="drafts-reminder-badge"
+                        class="hidden text-[10px] font-bold text-on-primary bg-primary px-2 py-0.5 rounded-full"
+                    ></span>
+                </div>
+
+                <!-- Drafts Search -->
+                <div class="px-0 mb-3">
+                    <div class="flex items-center gap-2 bg-surface-container-highest rounded-lg px-3 py-2 border border-white/5">
+                        <span class="material-symbols-outlined text-on-surface-variant text-[18px]">search</span>
+                        <input
+                            class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-on-surface-variant/50 text-on-surface"
+                            id="drafts-search"
+                            placeholder="Search drafts…"
+                            type="text"
+                            autocomplete="off"
+                        />
+                    </div>
+                </div>
+
+                <!-- Drafts Filters -->
+                <div class="px-0 mb-3 grid grid-cols-2 gap-2">
+                    <select
+                        class="bg-surface-container-highest border border-white/5 rounded-lg px-2 py-1.5 text-[11px] text-on-surface-variant focus:ring-1 focus:ring-primary outline-none"
+                        id="drafts-status-filter"
+                    >
+                        <option value="">All statuses</option>
+                        <option value="PENDING">Pending</option>
+                        <option value="SENT">Sent</option>
+                    </select>
+                    <select
+                        class="bg-surface-container-highest border border-white/5 rounded-lg px-2 py-1.5 text-[11px] text-on-surface-variant focus:ring-1 focus:ring-primary outline-none"
+                        id="drafts-sort"
+                    >
+                        <option value="newest">Newest first</option>
+                        <option value="oldest">Oldest first</option>
+                    </select>
+                </div>
+
+                <ul id="drafts-list" class="space-y-1">
+                    <li class="px-4 py-3 text-xs text-on-surface-variant opacity-60">Loading…</li>
+                </ul>
+
+                <button
+                    type="button"
+                    id="drafts-load-more"
+                    class="hidden w-full mt-2 px-4 py-2 text-[11px] font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors"
+                >
+                    Load more
+                </button>
+
+            </nav>
+
+        </div>
+        <!-- /drafts-sidebar-panel -->
+
+
+        <!-- ================================================= -->
+        <!-- CASES SIDEBAR PANEL -->
+        <!-- ================================================= -->
+
+        <div id="cases-sidebar-panel" class="flex-col flex-1 min-h-0" hidden>
+
+            <div class="px-4 mb-4 space-y-2">
+                <button
+                    class="w-full bg-primary text-on-primary py-3 px-4 rounded-lg font-label-md flex items-center justify-center gap-2 hover:brightness-110 active:scale-95 transition-all"
+                    id="new-case-btn"
+                    type="button"
+                >
+                    <span class="material-symbols-outlined">add</span>
+                    New Case
+                </button>
+                <button
+                    class="w-full bg-surface-container-highest text-on-surface-variant hover:text-primary py-2.5 px-4 rounded-lg font-label-md flex items-center justify-center gap-2 transition-all"
+                    id="view-calendar-btn"
+                    type="button"
+                >
+                    <span class="material-symbols-outlined text-[18px]">calendar_month</span>
+                    Calendar
+                </button>
+            </div>
+
+            <nav class="flex-1 overflow-y-auto space-y-1 px-2">
+
+                <div class="px-2 py-2">
+                    <span class="text-[10px] uppercase tracking-widest text-on-surface-variant opacity-50 font-bold">
+                        Cases
+                    </span>
+                </div>
+
+                <!-- Cases Search -->
+                <div class="px-0 mb-3">
+                    <div class="flex items-center gap-2 bg-surface-container-highest rounded-lg px-3 py-2 border border-white/5">
+                        <span class="material-symbols-outlined text-on-surface-variant text-[18px]">search</span>
+                        <input
+                            class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-on-surface-variant/50 text-on-surface"
+                            id="cases-search"
+                            placeholder="Search cases…"
+                            type="text"
+                            autocomplete="off"
+                        />
+                    </div>
+                </div>
+
+                <!-- Cases Filters -->
+                <div class="px-0 mb-3 grid grid-cols-2 gap-2">
+                    <select
+                        class="bg-surface-container-highest border border-white/5 rounded-lg px-2 py-1.5 text-[11px] text-on-surface-variant focus:ring-1 focus:ring-primary outline-none"
+                        id="cases-status-filter"
+                    >
+                        <option value="">All statuses</option>
+                        <option value="OPEN">Open</option>
+                        <option value="PENDING">Pending</option>
+                        <option value="CLOSED">Closed</option>
+                    </select>
+                    <select
+                        class="bg-surface-container-highest border border-white/5 rounded-lg px-2 py-1.5 text-[11px] text-on-surface-variant focus:ring-1 focus:ring-primary outline-none"
+                        id="cases-sort"
+                    >
+                        <option value="newest">Recently updated</option>
+                        <option value="oldest">Oldest first</option>
+                    </select>
+                </div>
+
+                <ul id="cases-list" class="space-y-1">
+                    <li class="px-4 py-3 text-xs text-on-surface-variant opacity-60">Loading…</li>
+                </ul>
+
+                <button
+                    type="button"
+                    id="cases-load-more"
+                    class="hidden w-full mt-2 px-4 py-2 text-[11px] font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors"
+                >
+                    Load more
+                </button>
+
+            </nav>
+
+        </div>
+        <!-- /cases-sidebar-panel -->
+
+
+        <!-- ================================================= -->
+        <!-- USER AREA -->
+        <!-- ================================================= -->
+
+        <div
+            class="px-4 py-4 border-t border-white/10 flex items-center gap-3"
+        >
+
+            <div
+                class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center text-primary shrink-0"
+            >
+
+                <span class="material-symbols-outlined text-[18px]">
+                    person
+                </span>
+
+            </div>
+
+
+            <div class="min-w-0 flex-1">
+
+                <p
+                    class="text-sm font-semibold text-on-surface truncate"
+                    id="user-label"
+                >
+                    —
+                </p>
+
+            </div>
+
+
+            <button
+                class="text-on-surface-variant hover:text-primary transition-colors"
+                id="settings-btn"
+                title="Settings"
+                type="button"
+            >
+
+                <span class="material-symbols-outlined text-[20px]">
+                    settings
+                </span>
+
+            </button>
+
+
+            <button
+                class="text-on-surface-variant hover:text-primary transition-colors"
+                id="logout-btn"
+                title="Log out"
+                type="button"
+            >
+
+                <span class="material-symbols-outlined text-[20px]">
+                    logout
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ===================================================== -->
+    <!-- MAIN -->
+    <!-- ===================================================== -->
+
+    <main class="flex-1 flex flex-col ml-64 relative">
+
+
+        <!-- ================================================= -->
+        <!-- TOP BAR -->
+        <!-- ================================================= -->
+
+        <header
+            class="sticky top-0 z-40 bg-surface-dim/50 backdrop-blur-md border-b border-outline-variant flex justify-between items-center px-8 py-4 w-full"
+        >
+
+            <div class="flex items-center gap-6">
+
+                <!-- Search -->
+
+                <form
+                    id="topbar-search-form"
+                    class="flex items-center gap-2 bg-surface-container-highest rounded-full px-4 py-2 min-w-[300px] focus-within:ring-1 focus-within:ring-primary"
+                    title="Ask CaseWale AI or jump to a past question/draft"
+                >
+
+                    <span
+                        class="material-symbols-outlined text-on-surface-variant text-[20px]"
+                    >
+                        search
+                    </span>
+
+
+                    <input
+                        id="topbar-search-input"
+                        class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-on-surface-variant/50"
+                        placeholder="Search case law, statutes… or press Enter to ask"
+                        type="text"
+                        autocomplete="off"
+                    />
+
+                </form>
+
+            </div>
+
+
+            <!-- AI Status -->
+
+            <div class="flex items-center gap-4">
+
+                <!-- Theme toggle -->
+                <button
+                    type="button"
+                    id="theme-toggle"
+                    class="flex items-center justify-center w-9 h-9 rounded-full bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors"
+                    title="Toggle light / dark theme"
+                >
+                    <span class="material-symbols-outlined text-[18px]" id="theme-toggle-icon">dark_mode</span>
+                </button>
+
+                <div
+                    class="h-6 w-[1px] bg-outline-variant mx-2"
+                ></div>
+
+
+                <div class="flex items-center gap-2">
+
+                    <span class="font-label-md text-label-md text-primary">
+                        AI Status: Optimal
+                    </span>
+
+                    <div
+                        class="w-2 h-2 rounded-full bg-primary animate-pulse"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================================================= -->
+        <!-- CHAT AREA -->
+        <!-- ================================================= -->
+
+        <section
+            class="flex-1 overflow-y-auto px-8 md:px-margin-desktop py-12 flex flex-col items-center pb-48"
+            id="chat-scroll"
+        >
+
+
+            <!-- ================================================= -->
+            <!-- WELCOME -->
+            <!-- ================================================= -->
+
+            <div
+                class="max-w-3xl w-full text-center space-y-8 mt-4"
+                id="welcome-view"
+            >
+
+                <div
+                    class="inline-block p-4 rounded-3xl glass-panel gold-glow mb-4"
+                >
+
+                    <span
+                        class="material-symbols-outlined text-primary text-5xl"
+                        style="font-variation-settings: 'FILL' 1;"
+                    >
+                        auto_awesome
+                    </span>
+
+                </div>
+
+
+                <h2
+                    class="font-display-lg text-4xl text-on-surface font-extrabold tracking-tight"
+                >
+
+                    Hello, I'm
+                    <span class="text-primary">
+                        CaseWale AI
+                    </span>.
+
+                </h2>
+
+
+                <p
+                    class="text-body-lg text-on-surface-variant max-w-xl mx-auto"
+                >
+
+                    Ask a legal question below. CaseWale answers with
+                    citations — informational only, not a substitute
+                    for a licensed attorney.
+
+                </p>
+
+
+                <!-- Suggested Prompts -->
+
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-12 text-left"
+                >
+
+
+                    <!-- Property -->
+
+                    <button
+                        class="prompt-card glass-panel p-6 rounded-2xl text-left hover:border-primary/50 transition-all group"
+                        type="button"
+                        data-prompt="Can my landlord raise rent without notice?"
+                        data-jurisdiction="India"
+                    >
+
+                        <span
+                            class="material-symbols-outlined text-primary mb-3 block"
+                        >
+                            real_estate_agent
+                        </span>
+
+                        <h4
+                            class="font-bold text-on-surface group-hover:text-primary transition-colors"
+                        >
+                            Property dispute
+                        </h4>
+
+                        <p
+                            class="text-xs text-on-surface-variant mt-1"
+                        >
+                            Rent notice periods and landlord obligations.
+                        </p>
+
+                    </button>
+
+
+                    <!-- Cyber Fraud -->
+
+                    <button
+                        class="prompt-card glass-panel p-6 rounded-2xl text-left hover:border-primary/50 transition-all group"
+                        type="button"
+                        data-prompt="What should I do if I'm a victim of online payment fraud?"
+                        data-jurisdiction="India"
+                    >
+
+                        <span
+                            class="material-symbols-outlined text-primary mb-3 block"
+                        >
+                            gavel
+                        </span>
+
+                        <h4
+                            class="font-bold text-on-surface group-hover:text-primary transition-colors"
+                        >
+                            Cyber fraud
+                        </h4>
+
+                        <p
+                            class="text-xs text-on-surface-variant mt-1"
+                        >
+                            Reporting and recourse for digital fraud.
+                        </p>
+
+                    </button>
+
+
+                    <!-- Divorce -->
+
+                    <button
+                        class="prompt-card glass-panel p-6 rounded-2xl text-left hover:border-primary/50 transition-all group"
+                        type="button"
+                        data-prompt="How is property typically divided in a divorce?"
+                        data-jurisdiction="India"
+                    >
+
+                        <span
+                            class="material-symbols-outlined text-primary mb-3 block"
+                        >
+                            group
+                        </span>
+
+                        <h4
+                            class="font-bold text-on-surface group-hover:text-primary transition-colors"
+                        >
+                            Divorce consultation
+                        </h4>
+
+                        <p
+                            class="text-xs text-on-surface-variant mt-1"
+                        >
+                            Asset division and custody basics.
+                        </p>
+
+                    </button>
+
+
+                    <!-- Consumer Rights -->
+
+                    <button
+                        class="prompt-card glass-panel p-6 rounded-2xl text-left hover:border-primary/50 transition-all group"
+                        type="button"
+                        data-prompt="Can I get a refund for a defective product the seller refuses to replace?"
+                        data-jurisdiction="India"
+                    >
+
+                        <span
+                            class="material-symbols-outlined text-primary mb-3 block"
+                        >
+                            policy
+                        </span>
+
+                        <h4
+                            class="font-bold text-on-surface group-hover:text-primary transition-colors"
+                        >
+                            Consumer rights
+                        </h4>
+
+                        <p
+                            class="text-xs text-on-surface-variant mt-1"
+                        >
+                            Defective goods, refunds and consumer remedies.
+                        </p>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- CONVERSATION -->
+            <!-- ================================================= -->
+
+            <div
+                class="w-full max-w-4xl space-y-8 mt-4"
+                id="conversation-view"
+                hidden
+            >
+
+
+                <!-- User Question -->
+
+                <div class="flex justify-end gap-4">
+
+                    <div
+                        class="max-w-[70%] bg-surface-container-high px-6 py-4 rounded-2xl rounded-tr-none border border-white/5"
+                    >
+
+                        <p
+                            class="text-on-surface"
+                            id="conv-question"
+                        ></p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- AI Answer -->
+
+                <div class="flex justify-start gap-4">
+
+
+                    <!-- AI Icon -->
+
+                    <div
+                        class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-primary shrink-0"
+                    >
+
+                        <span
+                            class="material-symbols-outlined text-sm"
+                            style="font-variation-settings: 'FILL' 1;"
+                        >
+                            auto_awesome
+                        </span>
+
+                    </div>
+
+
+                    <div class="max-w-[85%] space-y-4 w-full">
+
+
+                        <!-- Answer Card -->
+
+                        <div
+                            class="glass-panel p-6 rounded-2xl rounded-tl-none gold-glow"
+                        >
+
+                            <!-- Docket -->
+
+                            <div
+                                class="flex items-start justify-between gap-4 mb-3"
+                            >
+
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-widest text-primary/70"
+                                    id="conv-docket"
+                                ></span>
+
+
+                                <div class="flex items-center gap-3 shrink-0">
+                                    <button
+                                        class="text-on-surface-variant hover:text-primary transition-colors"
+                                        id="conv-edit"
+                                        title="Edit answer & citations"
+                                        type="button"
+                                    >
+                                        <span class="material-symbols-outlined text-[18px]">edit</span>
+                                    </button>
+
+                                    <button
+                                        class="text-on-surface-variant hover:text-primary transition-colors"
+                                        id="conv-pdf"
+                                        title="Download as PDF"
+                                        type="button"
+                                    >
+                                        <span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+                                    </button>
+
+                                    <button
+                                        class="text-on-surface-variant hover:text-error transition-colors"
+                                        id="conv-delete"
+                                        title="Delete this entry"
+                                        type="button"
+                                        hidden
+                                    >
+                                        <span class="material-symbols-outlined text-[18px]">
+                                            delete
+                                        </span>
+                                    </button>
+                                </div>
+
+                            </div>
+
+
+                            <!-- Answer (view mode) -->
+
+                            <p
+                                class="text-on-surface leading-relaxed whitespace-pre-wrap"
+                                id="conv-answer"
+                            ></p>
+
+                            <!-- Answer (edit mode) -->
+
+                            <textarea
+                                class="hidden w-full bg-surface-container-highest border border-white/10 rounded-lg px-4 py-3 text-on-surface text-sm leading-relaxed focus:ring-1 focus:ring-primary outline-none"
+                                id="conv-answer-input"
+                                rows="6"
+                            ></textarea>
+
+
+                            <!-- ================================================= -->
+                            <!-- CITATIONS -->
+                            <!-- ================================================= -->
+
+                            <div
+                                class="mt-4 flex flex-wrap gap-2"
+                                id="conv-citations-wrap"
+                                hidden
+                            >
+
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/60 w-full mb-1"
+                                >
+                                    Citations
+                                </span>
+
+
+                                <div
+                                    class="flex flex-wrap gap-2"
+                                    id="conv-citations"
+                                ></div>
+
+                            </div>
+
+                            <!-- Citations (edit mode) -->
+
+                            <div class="hidden mt-4 space-y-2" id="conv-citations-edit-wrap">
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/60">
+                                    Citations
+                                </span>
+                                <div class="space-y-2" id="conv-citations-edit"></div>
+                                <button type="button" id="conv-citation-add" class="text-[11px] font-bold text-primary hover:underline">
+                                    + Add citation
+                                </button>
+                            </div>
+
+                            <!-- Save/Cancel (edit mode) -->
+
+                            <div class="hidden mt-4 flex items-center gap-3" id="conv-edit-actions">
+                                <button type="button" id="conv-save" class="px-4 py-2 bg-primary text-on-primary text-xs font-bold rounded-lg">
+                                    Save changes
+                                </button>
+                                <button type="button" id="conv-cancel" class="px-4 py-2 text-xs font-bold text-on-surface-variant hover:text-on-surface">
+                                    Cancel
+                                </button>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Disclaimer -->
+
+                        <p
+                            class="text-xs text-on-surface-variant/50 italic px-2"
+                            id="conv-disclaimer"
+                            hidden
+                        ></p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- ERROR MESSAGE -->
+        <!-- ================================================= -->
+
+        <div
+            class="absolute bottom-24 left-0 right-0 px-8 md:px-margin-desktop flex justify-center pointer-events-none"
+            id="chat-error-outer"
+        >
+
+            <div
+                class="w-full max-w-4xl hidden rounded-lg border border-error/40 bg-error/10 px-4 py-3 text-sm text-error pointer-events-auto"
+                id="ask-error"
+            ></div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- FLOATING INPUT -->
+        <!-- ================================================= -->
+
+        <div
+            class="absolute bottom-6 left-0 right-0 px-8 md:px-margin-desktop flex justify-center pointer-events-none"
+            id="chat-input-outer"
+        >
+
+            <div
+                id="thread-indicator"
+                class="hidden max-w-4xl mx-auto mb-2 px-3 py-1.5 text-[11px] text-primary bg-primary/10 border border-primary/30 rounded-lg pointer-events-none w-fit"
+            ></div>
+
+            <form
+                class="w-full max-w-4xl glass-input rounded-2xl p-2 pointer-events-auto shadow-2xl gold-glow border border-primary/20"
+                id="ask-form"
+            >
+
+
+                <!-- Question Input -->
+
+                <div class="flex items-end gap-2 px-4 py-2">
+
+                    <textarea
+                        class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-on-surface-variant/40 py-2 resize-none max-h-32"
+                        id="question"
+                        placeholder="Describe your legal situation…"
+                        rows="1"
+                        required
+                    ></textarea>
+
+
+                    <button
+                        class="bg-primary text-on-primary p-3 rounded-xl hover:brightness-110 active:scale-95 transition-all shadow-lg disabled:opacity-50"
+                        id="ask-submit"
+                        type="submit"
+                    >
+
+                        <span
+                            class="material-symbols-outlined"
+                            style="font-variation-settings: 'FILL' 1;"
+                        >
+                            send
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+                <!-- Bottom Controls -->
+
+                <div
+                    class="px-4 pb-2 flex flex-wrap items-center gap-4"
+                >
+
+                    <!-- Jurisdiction -->
+
+                    <select
+                        class="bg-transparent border-none focus:ring-0 text-xs text-on-surface-variant w-36 cursor-pointer"
+                        id="jurisdiction-select"
+                        title="Jurisdiction"
+                    >
+                        <option value="India">India (general)</option>
+                        <optgroup label="Indian states">
+                            <option value="India - Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="India - Bihar">Bihar</option>
+                            <option value="India - Delhi">Delhi</option>
+                            <option value="India - Gujarat">Gujarat</option>
+                            <option value="India - Jharkhand">Jharkhand</option>
+                            <option value="India - Karnataka">Karnataka</option>
+                            <option value="India - Kerala">Kerala</option>
+                            <option value="India - Madhya Pradesh">Madhya Pradesh</option>
+                            <option value="India - Maharashtra">Maharashtra</option>
+                            <option value="India - Punjab">Punjab</option>
+                            <option value="India - Rajasthan">Rajasthan</option>
+                            <option value="India - Tamil Nadu">Tamil Nadu</option>
+                            <option value="India - Telangana">Telangana</option>
+                            <option value="India - Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="India - West Bengal">West Bengal</option>
+                        </optgroup>
+                        <option value="__custom__">Other (type below)…</option>
+                    </select>
+                    <input
+                        class="hidden bg-transparent border-none focus:ring-0 text-xs text-on-surface-variant placeholder:text-on-surface-variant/40 w-40"
+                        id="jurisdiction"
+                        placeholder="Type a jurisdiction"
+                        type="text"
+                        value="India"
+                    />
+
+
+                    <!-- Encryption -->
+
+                    <div
+                        class="flex items-center gap-1.5 opacity-40"
+                    >
+
+                        <span class="material-symbols-outlined text-[14px]">
+                            shield
+                        </span>
+
+                        <span
+                            class="text-[10px] font-bold tracking-widest uppercase"
+                        >
+                            End-to-End Encrypted
+                        </span>
+
+                    </div>
+
+
+                    <!-- Verified -->
+
+                    <div
+                        class="flex items-center gap-1.5 opacity-40"
+                    >
+
+                        <span class="material-symbols-outlined text-[14px]">
+                            history_edu
+                        </span>
+
+                        <span
+                            class="text-[10px] font-bold tracking-widest uppercase"
+                        >
+                            Indian Law
+                        </span>
+
+                    </div>
+
+
+                    <!-- Status -->
+
+                    <span
+                        class="text-xs text-on-surface-variant italic ml-auto"
+                        id="ask-status"
+                    ></span>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- DRAFTS VIEW -->
+        <!-- ================================================= -->
+
+        <div
+            id="drafts-view"
+            class="flex-1 overflow-y-auto px-8 md:px-margin-desktop py-12 flex flex-col items-center"
+            hidden
+        >
+
+            <div class="w-full max-w-3xl space-y-8">
+
+                <!-- Reminders Banner -->
+                <div
+                    id="drafts-reminders-banner"
+                    class="hidden glass-panel border border-primary/40 rounded-2xl p-5 gold-glow"
+                >
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-primary">notifications_active</span>
+                        <h3 class="font-bold text-primary text-xs uppercase tracking-widest">
+                            Pending Reminders
+                        </h3>
+                    </div>
+                    <ul id="drafts-reminders-list" class="space-y-2"></ul>
+                </div>
+
+                <!-- Editor -->
+                <div class="glass-panel p-6 rounded-2xl gold-glow space-y-5">
+
+                    <div class="flex items-center justify-between gap-4">
+                        <h2 class="font-headline-md text-headline-md text-on-surface" id="draft-editor-title">
+                            New Draft
+                        </h2>
+                        <span
+                            id="draft-status-pill"
+                            class="hidden shrink-0 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full"
+                        ></span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="font-label-md text-label-md text-on-surface-variant block" for="draft-title">
+                            Title (optional)
+                        </label>
+                        <input
+                            class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline"
+                            id="draft-title"
+                            placeholder="e.g. Notice to landlord"
+                            type="text"
+                        />
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="font-label-md text-label-md text-on-surface-variant block" for="draft-content">
+                            Message / Notice
+                        </label>
+                        <textarea
+                            class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline resize-none"
+                            id="draft-content"
+                            rows="8"
+                            placeholder="Draft your message or notice here…"
+                            required
+                        ></textarea>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="font-label-md text-label-md text-on-surface-variant block" for="draft-remind-at">
+                            Remind me on (optional)
+                        </label>
+                        <input
+                            class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                            id="draft-remind-at"
+                            type="datetime-local"
+                        />
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="font-label-md text-label-md text-on-surface-variant block" for="draft-recipient-email">
+                            Email to (optional)
+                        </label>
+                        <input
+                            class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline"
+                            id="draft-recipient-email"
+                            type="email"
+                            placeholder="e.g. landlord@example.com — sent automatically on Save"
+                        />
+                    </div>
+
+                    <div
+                        class="hidden rounded-lg border border-error/40 bg-error/10 px-4 py-3 text-sm text-error"
+                        id="draft-error"
+                    ></div>
+
+                    <div class="flex flex-wrap items-center gap-3 pt-2">
+                        <button
+                            type="button"
+                            id="draft-save-btn"
+                            class="bg-primary text-on-primary px-6 py-3 rounded-lg font-label-md font-bold hover:brightness-110 active:scale-95 transition-all disabled:opacity-50"
+                        >
+                            Save Draft
+                        </button>
+
+                        <button
+                            type="button"
+                            id="draft-send-btn"
+                            class="bg-surface-container-highest text-on-surface px-6 py-3 rounded-lg font-label-md font-bold hover:brightness-110 active:scale-95 transition-all disabled:opacity-50"
+                            hidden
+                        >
+                            Mark as Sent
+                        </button>
+
+                        <button
+                            type="button"
+                            id="draft-delete-btn"
+                            class="text-error px-4 py-3 rounded-lg font-label-md hover:bg-error/10 transition-all"
+                            hidden
+                        >
+                            Delete
+                        </button>
+
+                        <button
+                            type="button"
+                            id="draft-pdf-btn"
+                            class="text-on-surface-variant hover:text-primary px-4 py-3 rounded-lg font-label-md transition-all flex items-center gap-1.5"
+                            hidden
+                        >
+                            <span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+                            Download PDF
+                        </button>
+
+                        <span class="text-xs text-on-surface-variant italic ml-auto" id="draft-status-note"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- CASES VIEW -->
+        <!-- ================================================= -->
+
+        <div
+            id="cases-view"
+            class="flex-1 overflow-y-auto px-8 md:px-margin-desktop py-12 flex flex-col items-center"
+            hidden
+        >
+
+            <!-- ---- Case editor sub-view ---- -->
+            <div id="case-editor-subview" class="w-full max-w-3xl space-y-6">
+
+                <!-- Case details -->
+                <div class="glass-panel p-6 rounded-2xl gold-glow space-y-5">
+
+                    <div class="flex items-center justify-between gap-4">
+                        <h2 class="font-headline-md text-headline-md text-on-surface" id="case-editor-title">
+                            New Case
+                        </h2>
+                        <span
+                            id="case-status-pill"
+                            class="hidden shrink-0 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full"
+                        ></span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-2 md:col-span-2">
+                            <label class="font-label-md text-label-md text-on-surface-variant block" for="case-title">
+                                Case title
+                            </label>
+                            <input
+                                class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline"
+                                id="case-title"
+                                placeholder="e.g. Sharma vs. Verma Constructions"
+                                type="text"
+                                required
+                            />
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="font-label-md text-label-md text-on-surface-variant block" for="case-number">
+                                Case number
+                            </label>
+                            <input
+                                class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline"
+                                id="case-number"
+                                placeholder="e.g. CC/123/2026"
+                                type="text"
+                            />
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="font-label-md text-label-md text-on-surface-variant block" for="case-status">
+                                Status
+                            </label>
+                            <select
+                                class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                                id="case-status"
+                            >
+                                <option value="OPEN">Open</option>
+                                <option value="PENDING">Pending</option>
+                                <option value="CLOSED">Closed</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="font-label-md text-label-md text-on-surface-variant block" for="case-court">
+                                Court
+                            </label>
+                            <input
+                                class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline"
+                                id="case-court"
+                                placeholder="e.g. District Consumer Commission, Jamshedpur"
+                                type="text"
+                            />
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="font-label-md text-label-md text-on-surface-variant block" for="case-jurisdiction">
+                                Jurisdiction
+                            </label>
+                            <input
+                                class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline"
+                                id="case-jurisdiction"
+                                placeholder="e.g. India - Jharkhand"
+                                type="text"
+                            />
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="font-label-md text-label-md text-on-surface-variant block" for="case-client-name">
+                                Client name
+                            </label>
+                            <input
+                                class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline"
+                                id="case-client-name"
+                                type="text"
+                            />
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="font-label-md text-label-md text-on-surface-variant block" for="case-opposing-party">
+                                Opposing party
+                            </label>
+                            <input
+                                class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline"
+                                id="case-opposing-party"
+                                type="text"
+                            />
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="font-label-md text-label-md text-on-surface-variant block" for="case-filed-date">
+                                Filed date
+                            </label>
+                            <input
+                                class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                                id="case-filed-date"
+                                type="date"
+                            />
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="font-label-md text-label-md text-on-surface-variant block" for="case-next-hearing">
+                                Next hearing
+                            </label>
+                            <input
+                                class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                                id="case-next-hearing"
+                                type="date"
+                            />
+                        </div>
+
+                        <div class="space-y-2 md:col-span-2">
+                            <label class="font-label-md text-label-md text-on-surface-variant block" for="case-description">
+                                Notes / description
+                            </label>
+                            <textarea
+                                class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline resize-none"
+                                id="case-description"
+                                rows="4"
+                                placeholder="Facts, strategy, next steps…"
+                            ></textarea>
+                        </div>
+                    </div>
+
+                    <div
+                        class="hidden rounded-lg border border-error/40 bg-error/10 px-4 py-3 text-sm text-error"
+                        id="case-error"
+                    ></div>
+
+                    <div class="flex flex-wrap items-center gap-3 pt-2">
+                        <button
+                            type="button"
+                            id="case-save-btn"
+                            class="bg-primary text-on-primary px-6 py-3 rounded-lg font-label-md font-bold hover:brightness-110 active:scale-95 transition-all disabled:opacity-50"
+                        >
+                            Save Case
+                        </button>
+
+                        <button
+                            type="button"
+                            id="case-delete-btn"
+                            class="text-error px-4 py-3 rounded-lg font-label-md hover:bg-error/10 transition-all"
+                            hidden
+                        >
+                            Delete Case
+                        </button>
+
+                        <span class="text-xs text-on-surface-variant italic ml-auto" id="case-status-note"></span>
+                    </div>
+
+                </div>
+
+                <!-- Documents -->
+                <div id="case-documents-section" class="glass-panel p-6 rounded-2xl gold-glow space-y-4" hidden>
+
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-bold text-on-surface text-sm uppercase tracking-widest flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-[20px]">folder_open</span>
+                            Documents
+                        </h3>
+                        <label
+                            class="cursor-pointer text-xs font-bold uppercase tracking-widest text-primary hover:brightness-110 flex items-center gap-1.5"
+                        >
+                            <span class="material-symbols-outlined text-[18px]">upload_file</span>
+                            Upload
+                            <input type="file" id="case-document-input" class="hidden" />
+                        </label>
+                    </div>
+
+                    <p class="text-[11px] text-on-surface-variant opacity-60">
+                        PDF, Word, image or text files, up to 15MB.
+                    </p>
+
+                    <div
+                        class="hidden rounded-lg border border-error/40 bg-error/10 px-4 py-3 text-sm text-error"
+                        id="case-document-error"
+                    ></div>
+
+                    <ul id="case-documents-list" class="space-y-2">
+                        <li class="text-xs text-on-surface-variant opacity-60">No documents yet.</li>
+                    </ul>
+
+                </div>
+
+                <!-- Events / hearings -->
+                <div id="case-events-section" class="glass-panel p-6 rounded-2xl gold-glow space-y-4" hidden>
+
+                    <h3 class="font-bold text-on-surface text-sm uppercase tracking-widest flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary text-[20px]">event</span>
+                        Hearings & Events
+                    </h3>
+
+                    <form id="case-event-form" class="grid grid-cols-1 md:grid-cols-4 gap-2 items-end">
+                        <div class="space-y-1 md:col-span-2">
+                            <label class="text-[11px] text-on-surface-variant block" for="event-title">Title</label>
+                            <input
+                                class="w-full bg-transparent border border-outline-variant rounded-lg px-3 py-2 text-sm text-on-surface focus:ring-2 focus:ring-primary outline-none"
+                                id="event-title"
+                                placeholder="e.g. First hearing"
+                                type="text"
+                                required
+                            />
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[11px] text-on-surface-variant block" for="event-date">Date & time</label>
+                            <input
+                                class="w-full bg-transparent border border-outline-variant rounded-lg px-3 py-2 text-sm text-on-surface focus:ring-2 focus:ring-primary outline-none"
+                                id="event-date"
+                                type="datetime-local"
+                                required
+                            />
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[11px] text-on-surface-variant block" for="event-type">Type</label>
+                            <select
+                                class="w-full bg-transparent border border-outline-variant rounded-lg px-3 py-2 text-sm text-on-surface focus:ring-2 focus:ring-primary outline-none"
+                                id="event-type"
+                            >
+                                <option value="HEARING">Hearing</option>
+                                <option value="DEADLINE">Deadline</option>
+                                <option value="MEETING">Meeting</option>
+                                <option value="OTHER">Other</option>
+                            </select>
+                        </div>
+                        <div class="space-y-1 md:col-span-4">
+                            <input
+                                class="w-full bg-transparent border border-outline-variant rounded-lg px-3 py-2 text-sm text-on-surface focus:ring-2 focus:ring-primary outline-none placeholder:text-outline"
+                                id="event-notes"
+                                placeholder="Notes (optional)"
+                                type="text"
+                            />
+                        </div>
+                        <div class="md:col-span-4">
+                            <button
+                                type="submit"
+                                class="bg-surface-container-highest text-on-surface px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all"
+                            >
+                                Add Event
+                            </button>
+                        </div>
+                    </form>
+
+                    <div
+                        class="hidden rounded-lg border border-error/40 bg-error/10 px-4 py-3 text-sm text-error"
+                        id="case-event-error"
+                    ></div>
+
+                    <ul id="case-events-list" class="space-y-2">
+                        <li class="text-xs text-on-surface-variant opacity-60">No events yet.</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <!-- ---- Calendar sub-view ---- -->
+            <div id="case-calendar-subview" class="w-full max-w-3xl space-y-6" hidden>
+
+                <div class="glass-panel p-6 rounded-2xl gold-glow space-y-5">
+
+                    <div class="flex items-center justify-between">
+                        <button
+                            type="button"
+                            id="calendar-back-btn"
+                            class="text-xs font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary flex items-center gap-1"
+                        >
+                            <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                            Back to cases
+                        </button>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <button type="button" id="calendar-prev-btn" class="text-on-surface-variant hover:text-primary">
+                            <span class="material-symbols-outlined">chevron_left</span>
+                        </button>
+                        <h2 class="font-headline-md text-headline-md text-on-surface" id="calendar-month-label">—</h2>
+                        <button type="button" id="calendar-next-btn" class="text-on-surface-variant hover:text-primary">
+                            <span class="material-symbols-outlined">chevron_right</span>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-7 gap-1 text-center text-[10px] uppercase tracking-widest text-on-surface-variant opacity-60">
+                        <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                    </div>
+
+                    <div id="calendar-grid" class="grid grid-cols-7 gap-1"></div>
+
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl gold-glow space-y-3">
+                    <h3 class="font-bold text-on-surface text-sm uppercase tracking-widest" id="calendar-day-label">
+                        Upcoming
+                    </h3>
+                    <ul id="calendar-day-events" class="space-y-2">
+                        <li class="text-xs text-on-surface-variant opacity-60">Select a day with a dot to see its events.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ===================================================== -->
+    <!-- BACKGROUND EFFECTS -->
+    <!-- ===================================================== -->
+
+    <div
+        class="fixed top-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 blur-[120px] rounded-full -z-10"
+    ></div>
+
+
+    <div
+        class="fixed bottom-[-5%] left-[20%] w-[30%] h-[30%] bg-secondary/5 blur-[100px] rounded-full -z-10"
+    ></div>
+
+
+    <!-- ===================================================== -->
+    <!-- SETTINGS MODAL -->
+    <!-- ===================================================== -->
+
+    <div
+        id="settings-modal-backdrop"
+        class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-center justify-center px-4"
+        hidden
+    >
+        <div class="w-full max-w-md glass-panel gold-glow rounded-2xl p-6 space-y-5">
+
+            <div class="flex items-center justify-between">
+                <h2 class="font-headline-md text-headline-md text-on-surface">Account Settings</h2>
+                <button
+                    type="button"
+                    id="settings-close-btn"
+                    class="text-on-surface-variant hover:text-primary transition-colors"
+                    title="Close"
+                >
+                    <span class="material-symbols-outlined text-[22px]">close</span>
+                </button>
+            </div>
+
+            <div class="space-y-2">
+                <label class="font-label-md text-label-md text-on-surface-variant block">Email</label>
+                <div
+                    class="w-full bg-surface-container-highest border border-outline-variant rounded-lg px-4 py-3 text-on-surface-variant text-sm"
+                    id="settings-email"
+                >—</div>
+            </div>
+
+            <div class="space-y-2">
+                <label class="font-label-md text-label-md text-on-surface-variant block" for="settings-name">Full Name</label>
+                <input
+                    class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                    id="settings-name"
+                    type="text"
+                    placeholder="Adv. Julian Thorne"
+                />
+            </div>
+
+            <div class="h-px bg-outline-variant/50"></div>
+
+            <p class="text-xs text-on-surface-variant opacity-70">
+                Leave password fields blank if you only want to update your name.
+            </p>
+
+            <div class="space-y-2">
+                <label class="font-label-md text-label-md text-on-surface-variant block" for="settings-current-password">Current Password</label>
+                <input
+                    class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                    id="settings-current-password"
+                    type="password"
+                    autocomplete="current-password"
+                    placeholder="••••••••"
+                />
+            </div>
+
+            <div class="space-y-2">
+                <label class="font-label-md text-label-md text-on-surface-variant block" for="settings-new-password">New Password</label>
+                <input
+                    class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                    id="settings-new-password"
+                    type="password"
+                    autocomplete="new-password"
+                    placeholder="At least 8 characters"
+                />
+            </div>
+
+            <div
+                class="hidden rounded-lg border border-error/40 bg-error/10 px-4 py-3 text-sm text-error"
+                id="settings-error"
+            ></div>
+
+            <div
+                class="hidden rounded-lg border border-primary/40 bg-primary/10 px-4 py-3 text-sm text-primary"
+                id="settings-success"
+            ></div>
+
+            <div class="flex items-center gap-3 pt-1">
+                <button
+                    type="button"
+                    id="settings-save-btn"
+                    class="flex-1 bg-primary text-on-primary py-3 rounded-lg font-label-md font-bold hover:brightness-110 active:scale-95 transition-all disabled:opacity-50"
+                >
+                    Save Changes
+                </button>
+                <button
+                    type="button"
+                    id="settings-cancel-btn"
+                    class="px-5 py-3 rounded-lg font-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+                >
+                    Cancel
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- ===================================================== -->
+    <!-- JAVASCRIPT -->
+    <!-- ===================================================== -->
+
+    <script src="./js/config.js"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/auth.js"></script>
+    <script src="./js/dashboard.js"></script>
+    <script src="./js/drafts.js"></script>
+    <script src="./js/cases.js"></script>
+    <script src="./js/settings.js"></script>
+
+</body>
+
+</html>

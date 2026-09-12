@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CaseWale - Sovereign Justice Delivered</title>
+<script src="js/theme.js"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "surface-container-high": "rgb(var(--color-surface-container-high) / <alpha-value>)",
+          "surface-container-low": "rgb(var(--color-surface-container-low) / <alpha-value>)",
+          "outline-variant": "rgb(var(--color-outline-variant) / <alpha-value>)",
+          "primary": "rgb(var(--color-primary) / <alpha-value>)",
+          "on-background": "rgb(var(--color-on-background) / <alpha-value>)",
+          "surface-bright": "rgb(var(--color-surface-bright) / <alpha-value>)",
+          "on-tertiary": "rgb(var(--color-on-tertiary) / <alpha-value>)",
+          "inverse-surface": "rgb(var(--color-inverse-surface) / <alpha-value>)",
+          "primary-container": "rgb(var(--color-primary-container) / <alpha-value>)",
+          "on-secondary": "rgb(var(--color-on-secondary) / <alpha-value>)",
+          "surface-dim": "rgb(var(--color-surface-dim) / <alpha-value>)",
+          "surface-tint": "rgb(var(--color-surface-tint) / <alpha-value>)",
+          "background": "rgb(var(--color-background) / <alpha-value>)",
+          "error": "rgb(var(--color-error) / <alpha-value>)",
+          "on-surface": "rgb(var(--color-on-surface) / <alpha-value>)",
+          "surface": "rgb(var(--color-surface) / <alpha-value>)",
+          "surface-container-highest": "rgb(var(--color-surface-container-highest) / <alpha-value>)",
+          "surface-container-lowest": "rgb(var(--color-surface-container-lowest) / <alpha-value>)",
+          "on-surface-variant": "rgb(var(--color-on-surface-variant) / <alpha-value>)",
+          "outline": "rgb(var(--color-outline) / <alpha-value>)",
+          "surface-variant": "rgb(var(--color-surface-container-highest) / <alpha-value>)",
+          "on-primary": "rgb(var(--color-on-primary) / <alpha-value>)",
+          "surface-container": "rgb(var(--color-surface-container) / <alpha-value>)",
+          "secondary": "rgb(var(--color-secondary) / <alpha-value>)",
+        },
+        borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+        spacing: { unit: "8px", "margin-mobile": "20px", "margin-desktop": "64px", "container-max": "1440px", gutter: "24px" },
+        fontFamily: { "display-lg": ["Inter"], "body-md": ["Inter"], "body-lg": ["Inter"], "headline-md": ["Inter"], "headline-lg": ["Inter"], "label-md": ["Inter"] },
+        fontSize: {
+          "display-lg": ["64px", { lineHeight: "72px", letterSpacing: "-0.02em", fontWeight: "800" }],
+          "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+          "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+          "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+          "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700" }],
+          "label-md": ["14px", { lineHeight: "20px", letterSpacing: "0.05em", fontWeight: "600" }],
+        },
+      },
+    },
+  };
+</script>
+</head>
+<body class="canvas-bg min-h-screen text-on-surface selection:bg-primary selection:text-on-primary">
+<main class="flex min-h-screen flex-col md:flex-row">
+
+  <!-- Left: Visual narrative -->
+  <section class="relative hidden md:flex md:w-1/2 overflow-hidden flex-col justify-center px-margin-desktop bg-surface-dim">
+    <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-primary/10 rounded-full blur-[120px] ai-pulse"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-primary-container/10 rounded-full blur-[120px] ai-pulse"></div>
+    <div class="relative z-10 space-y-6">
+      <div class="flex items-center gap-4">
+        <a href="landing.html" class="flex items-center gap-4 hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-primary text-headline-lg" style="font-variation-settings: 'FILL' 1;">gavel</span>
+          <h1 class="font-display-lg text-display-lg text-primary tracking-tighter">CaseWale</h1>
+        </a>
+      </div>
+      <p class="font-headline-md text-headline-md text-on-surface-variant max-w-lg">
+        The Future of Justice. Sovereign Intelligence for the modern legal elite.
+      </p>
+      <div class="pt-12 grid grid-cols-2 gap-gutter">
+        <div class="glass-card p-6 rounded-xl border-l-4 border-l-primary">
+          <span class="material-symbols-outlined text-primary mb-2 block">auto_awesome</span>
+          <h3 class="font-label-md text-label-md text-primary uppercase tracking-widest mb-1">AI Assistant</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant">Real-time case strategy and legal research.</p>
+        </div>
+        <div class="glass-card p-6 rounded-xl">
+          <span class="material-symbols-outlined text-on-surface-variant mb-2 block">shield</span>
+          <h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-1">Secure</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant">Your questions are tied to your account only.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Right: Interaction core -->
+  <section class="flex flex-col flex-1 items-center justify-center p-margin-mobile md:p-margin-desktop">
+    <div class="md:hidden mb-12 flex items-center gap-3">
+      <span class="material-symbols-outlined text-primary text-headline-md" style="font-variation-settings: 'FILL' 1;">gavel</span>
+      <span class="font-headline-lg text-headline-lg text-primary tracking-tighter">CaseWale</span>
+    </div>
+
+    <div class="w-full max-w-md space-y-8">
+
+      <!-- ===== Sign in ===== -->
+      <div id="view-login">
+        <div class="text-center md:text-left mb-8">
+          <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Sign in</h2>
+          <p class="font-body-md text-body-md text-on-surface-variant">Access your legal intelligence suite.</p>
+        </div>
+        <div class="glass-card p-8 rounded-xl gold-glow space-y-6">
+          <form id="login-form" novalidate class="space-y-5">
+            <div class="space-y-2">
+              <label class="font-label-md text-label-md text-on-surface-variant block" for="login-email">Professional Email</label>
+              <input class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline" id="login-email" placeholder="lawyer@firm.com" type="email" autocomplete="email" required />
+            </div>
+            <div class="space-y-2">
+              <label class="font-label-md text-label-md text-on-surface-variant block" for="login-password">Security Key</label>
+              <div class="relative">
+                <input class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline" id="login-password" placeholder="••••••••" type="password" autocomplete="current-password" required />
+                <button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface" type="button" data-toggle-pw="login-password">
+                  <span class="material-symbols-outlined text-[20px]">visibility</span>
+                </button>
+              </div>
+            </div>
+            <div class="text-right -mt-2">
+              <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary cursor-pointer" id="go-forgot">Forgot password?</a>
+            </div>
+            <button class="w-full bg-primary py-4 rounded-lg font-headline-md text-headline-md text-on-primary font-bold active:scale-[0.98] transition-transform shadow-lg shadow-primary/20 disabled:opacity-60" type="submit" id="login-submit">
+              Access Vault
+            </button>
+          </form>
+          <div class="hidden rounded-lg border border-error/40 bg-error/10 px-4 py-3 text-sm text-error" id="login-error"></div>
+        </div>
+        <p class="text-center font-body-md text-body-md text-on-surface-variant mt-6">
+          New to the sovereignty?
+          <a class="text-primary font-bold hover:underline ml-1 cursor-pointer" id="go-signup">Create an account</a>
+        </p>
+      </div>
+
+      <!-- ===== Create account ===== -->
+      <div id="view-signup" hidden>
+        <div class="text-center md:text-left mb-8">
+          <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Create an account</h2>
+          <p class="font-body-md text-body-md text-on-surface-variant">Join the sovereign legal intelligence suite.</p>
+        </div>
+        <div class="glass-card p-8 rounded-xl gold-glow space-y-6">
+          <form id="signup-form" novalidate class="space-y-5">
+            <div class="space-y-2">
+              <label class="font-label-md text-label-md text-on-surface-variant block" for="signup-name">Full Name</label>
+              <input class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline" id="signup-name" placeholder="Adv. Julian Thorne" type="text" autocomplete="name" />
+            </div>
+            <div class="space-y-2">
+              <label class="font-label-md text-label-md text-on-surface-variant block" for="signup-email">Professional Email</label>
+              <input class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline" id="signup-email" placeholder="lawyer@firm.com" type="email" autocomplete="email" required />
+            </div>
+            <div class="space-y-2">
+              <label class="font-label-md text-label-md text-on-surface-variant block" for="signup-password">Security Key</label>
+              <div class="relative">
+                <input class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline" id="signup-password" placeholder="••••••••" type="password" autocomplete="new-password" required />
+                <button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface" type="button" data-toggle-pw="signup-password">
+                  <span class="material-symbols-outlined text-[20px]">visibility</span>
+                </button>
+              </div>
+            </div>
+            <button class="w-full bg-primary py-4 rounded-lg font-headline-md text-headline-md text-on-primary font-bold active:scale-[0.98] transition-transform shadow-lg shadow-primary/20 disabled:opacity-60" type="submit" id="signup-submit">
+              Create Account
+            </button>
+          </form>
+          <div class="hidden rounded-lg border border-error/40 bg-error/10 px-4 py-3 text-sm text-error" id="signup-error"></div>
+        </div>
+        <p class="text-center font-body-md text-body-md text-on-surface-variant mt-6">
+          Already sovereign?
+          <a class="text-primary font-bold hover:underline ml-1 cursor-pointer" id="go-login">Sign in</a>
+        </p>
+      </div>
+
+      <!-- ===== Forgot password ===== -->
+      <div id="view-forgot" hidden>
+        <div class="text-center md:text-left mb-8">
+          <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Reset your password</h2>
+          <p class="font-body-md text-body-md text-on-surface-variant">We'll email you a link to choose a new one.</p>
+        </div>
+        <div class="glass-card p-8 rounded-xl gold-glow space-y-6">
+          <form id="forgot-form" novalidate class="space-y-5">
+            <div class="space-y-2">
+              <label class="font-label-md text-label-md text-on-surface-variant block" for="forgot-email">Professional Email</label>
+              <input class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline" id="forgot-email" placeholder="lawyer@firm.com" type="email" autocomplete="email" required />
+            </div>
+            <button class="w-full bg-primary py-4 rounded-lg font-headline-md text-headline-md text-on-primary font-bold active:scale-[0.98] transition-transform shadow-lg shadow-primary/20 disabled:opacity-60" type="submit" id="forgot-submit">
+              Send reset link
+            </button>
+          </form>
+          <div class="hidden rounded-lg border border-error/40 bg-error/10 px-4 py-3 text-sm text-error" id="forgot-error"></div>
+          <div class="hidden rounded-lg border border-primary/40 bg-primary/10 px-4 py-3 text-sm text-primary" id="forgot-success"></div>
+        </div>
+        <p class="text-center font-body-md text-body-md text-on-surface-variant mt-6">
+          Remembered it?
+          <a class="text-primary font-bold hover:underline ml-1 cursor-pointer" id="go-login-2">Sign in</a>
+        </p>
+      </div>
+
+      <!-- ===== Reset password (arrived via emailed link) ===== -->
+      <div id="view-reset-password" hidden>
+        <div class="text-center md:text-left mb-8">
+          <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Choose a new password</h2>
+          <p class="font-body-md text-body-md text-on-surface-variant">This link is valid for 30 minutes.</p>
+        </div>
+        <div class="glass-card p-8 rounded-xl gold-glow space-y-6">
+          <form id="reset-password-form" novalidate class="space-y-5">
+            <div class="space-y-2">
+              <label class="font-label-md text-label-md text-on-surface-variant block" for="reset-password-new">New Security Key</label>
+              <input class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline" id="reset-password-new" placeholder="At least 8 characters" type="password" autocomplete="new-password" required minlength="8" />
+            </div>
+            <button class="w-full bg-primary py-4 rounded-lg font-headline-md text-headline-md text-on-primary font-bold active:scale-[0.98] transition-transform shadow-lg shadow-primary/20 disabled:opacity-60" type="submit" id="reset-password-submit">
+              Set new password
+            </button>
+          </form>
+          <div class="hidden rounded-lg border border-error/40 bg-error/10 px-4 py-3 text-sm text-error" id="reset-password-error"></div>
+          <div class="hidden rounded-lg border border-primary/40 bg-primary/10 px-4 py-3 text-sm text-primary" id="reset-password-success"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="mt-auto pt-12">
+      <div class="flex flex-wrap justify-center gap-x-8 gap-y-2 opacity-60">
+        <a class="font-label-md text-label-md hover:text-primary transition-colors" href="#">Privacy Protocol</a>
+        <a class="font-label-md text-label-md hover:text-primary transition-colors" href="#">Terms of Service</a>
+        <a class="font-label-md text-label-md hover:text-primary transition-colors" href="#">Legal Disclaimer</a>
+      </div>
+      <p class="text-center text-[11px] text-on-surface-variant/40 mt-4">Backend: <span id="api-url-note"></span></p>
+    </footer>
+  </section>
+</main>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>
