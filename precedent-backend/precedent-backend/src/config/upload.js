@@ -10,10 +10,11 @@
 
 const path = require("path");
 const fs = require("fs");
+const os = require("os");                    // ← naya import add kar
 const crypto = require("crypto");
 const multer = require("multer");
 
-const UPLOAD_DIR = path.join(__dirname, "..", "..", "uploads", "cases");
+const UPLOAD_DIR = path.join(os.tmpdir(), "uploads", "cases");   // ← ye line change kar
 
 if (!fs.existsSync(UPLOAD_DIR)) {
     fs.mkdirSync(UPLOAD_DIR, { recursive: true });
